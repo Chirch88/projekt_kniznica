@@ -1,101 +1,93 @@
-# 📚 Knižnica
+# 📚 Knižnica 
 
-## Popis projektu
-Tento projekt predstavuje jednoduchý program na správu knižnice vytvorený v jazyku **Java**.  
-Aplikácia umožňuje pomocou **textového používateľského rozhrania** spravovať inventár kníh, ich vypožičiavanie a zobrazovanie rôznych prehľadov.
+## 1. Účel projektu
+Cieľom projektu je vytvoriť jednoduchú konzolovú aplikáciu na správu knižnice v jazyku **Java**.  
+Program umožňuje pracovať s inventárom kníh, evidovať ich vypožičanie a zobrazovať rôzne prehľady pomocou textového menu.
 
-Projekt bol vytvorený ako školské zadanie v rámci výučby objektového programovania.
-
----
-
-## Použité technológie
-- Java
-- IntelliJ IDEA
-- GitHub
-- Konzolové (textové) používateľské rozhranie
+Projekt bol vytvorený ako školské zadanie v rámci predmetu zameraného na objektové programovanie.
 
 ---
 
-## Štruktúra projektu
+## 2. Použité technológie a nástroje
+- programovací jazyk **Java**
+- vývojové prostredie **IntelliJ IDEA**
+- verzovací systém **Git**
+- repozitár **GitHub**
+- konzolové (textové) používateľské rozhranie
+
+---
+
+## 3. Štruktúra projektu
+Projekt je rozdelený do viacerých tried, pričom každá trieda má jasne definovanú zodpovednosť.
 
 ```
 src/
- ├── Main.java
- ├── Kniznica.java
- ├── Inventar.java
- └── Kniha.java
+ ├── Main.java        (vstupný bod programu)
+ ├── Kniznica.java   (hlavná logika aplikácie a menu)
+ ├── Inventar.java   (správa kolekcie kníh)
+ └── Kniha.java      (reprezentácia jednej knihy)
 ```
 
 ---
 
-## Spustenie programu
+## 4. Spustenie programu
 Program sa spúšťa spustením triedy **Main.java**.
 
 Postup v IntelliJ IDEA:
-1. Otvorte súbor `Main.java`
-2. Kliknite na zelené tlačidlo **Run**
+1. Otvoriť súbor `Main.java`
+2. Kliknúť na tlačidlo **Run**
 3. Program sa spustí v konzole
+
+Po spustení sa automaticky načítajú testovacie dáta a zobrazí sa hlavné menu programu.
 
 ---
 
-## Funkcionalita programu
-Program umožňuje:
+## 5. Ovládanie programu
+Používateľ ovláda aplikáciu pomocou **číselného menu** v konzole.  
+Jednotlivé voľby menu umožňujú vykonávať operácie s knihami, ako napríklad ich pridanie, vyradenie alebo vypožičanie.
+
+---
+
+## 6. Funkcionalita aplikácie
+Aplikácia umožňuje:
 - pridať novú knihu do inventára
 - vyradiť knihu z inventára
 - požičať knihu na zadaný počet dní
 - vrátiť požičanú knihu
-- vypísať všetky knihy
-- vypísať požičané knihy
-- vypísať knihy po výpožičnej lehote
-- vypísať knihy podľa kategórie
-
-Ovládanie programu prebieha pomocou číselného menu v konzole.
+- vypísať všetky knihy v inventári
+- vypísať iba požičané knihy
+- vypísať knihy po prekročení výpožičnej lehoty
+- vypísať knihy podľa zvolenej kategórie
 
 ---
 
-## Popis tried
+## 7. Popis tried
 
 ### Trieda `Kniha`
-Reprezentuje jednu knihu v knižnici.  
-Obsahuje informácie o:
-- názve knihy
-- autorovi
-- kategórii
-- stave vypožičania
-- počte dní vypožičania
+Trieda reprezentuje jednu knihu v knižnici.  
+Obsahuje základné informácie o knihe a jej stave (či je požičaná alebo nie).
 
 ---
 
 ### Trieda `Inventar`
-Spravuje kolekciu kníh pomocou poľa.  
-Zabezpečuje:
-- pridávanie a odstraňovanie kníh
-- vyhľadávanie kníh
-- výpisy kníh podľa rôznych kritérií
+Trieda zabezpečuje správu všetkých kníh v knižnici.  
+Knihy sú uložené v poli a trieda poskytuje metódy na ich vyhľadávanie, pridávanie, odstraňovanie a výpis.
 
 ---
 
 ### Trieda `Kniznica`
-Obsahuje hlavnú logiku programu a textové menu.  
-Zabezpečuje komunikáciu s používateľom a spracovanie vstupov.
+Trieda obsahuje hlavnú logiku aplikácie a textové menu.  
+Spracováva vstupy od používateľa a volá príslušné metódy triedy `Inventar`.
 
 ---
 
 ### Trieda `Main`
-Predstavuje vstupný bod programu.  
-Obsahuje metódu `main`, ktorá spúšťa aplikáciu.
+Trieda `Main` predstavuje vstupný bod programu.  
+Obsahuje metódu `main`, ktorá spustí aplikáciu.
 
 ---
 
-## Testovacie dáta
-Po spustení programu sa do inventára automaticky načítajú testovacie knihy, aby bolo možné okamžite pracovať s aplikáciou bez nutnosti manuálneho zadávania údajov.
+## 8. Testovacie dáta
+Program po spustení automaticky načíta testovacie knihy, aby bolo možné aplikáciu okamžite používať bez nutnosti ručného zadávania údajov.
 
 ---
-
-## Záver
-Projekt spĺňa všetky minimálne požiadavky zadania:
-- je plne funkčný
-- obsahuje textové menu
-- používa objektový prístup
-- obsahuje dokumentáciu
-- je pripravený na prezentáciu
