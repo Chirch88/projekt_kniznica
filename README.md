@@ -4,7 +4,6 @@
 Cieľom projektu je vytvoriť jednoduchú konzolovú aplikáciu na správu knižnice v jazyku **Java**.  
 Program umožňuje pracovať s inventárom kníh, evidovať ich vypožičanie a zobrazovať rôzne prehľady pomocou textového menu.
 
-Projekt bol vytvorený ako školské zadanie v rámci predmetu zameraného na objektové programovanie.
 
 ---
 
@@ -91,3 +90,4 @@ Obsahuje metódu `main`, ktorá spustí aplikáciu.
 Program po spustení automaticky načíta testovacie knihy, aby bolo možné aplikáciu okamžite používať bez nutnosti ručného zadávania údajov.
 
 ---
+
