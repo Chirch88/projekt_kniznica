@@ -87,5 +87,50 @@ public class Kniznica {
     }
 
     private void nacitajData() {
+
+        inventar.pridajKnihu(new Kniha("1984", "George Orwell", "Beletria"));
+        inventar.pridajKnihu(new Kniha("Zvieracia farma", "George Orwell", "Beletria"));
+        inventar.pridajKnihu(new Kniha("Sherlock Holmes", "Arthur Conan Doyle", "Beletria"));
+        inventar.pridajKnihu(new Kniha("Dracula", "Bram Stoker", "Beletria"));
+        inventar.pridajKnihu(new Kniha("Frankenstein", "Mary Shelley", "Beletria"));
+        inventar.pridajKnihu(new Kniha("It", "Stephen King", "Beletria"));
+        inventar.pridajKnihu(new Kniha("Mizéria", "Stephen King", "Beletria"));
+        inventar.pridajKnihu(new Kniha("Zelená míľa", "Stephen King", "Beletria"));
+        inventar.pridajKnihu(new Kniha("Na západe nič nové", "Erich Maria Remarque", "Beletria"));
+        inventar.pridajKnihu(new Kniha("Kmotrov", "Mario Puzo", "Beletria"));
+
+        inventar.pridajKnihu(new Kniha("Harry Potter 1", "J. K. Rowling", "Fantasy"));
+        inventar.pridajKnihu(new Kniha("Harry Potter 2", "J. K. Rowling", "Fantasy"));
+        inventar.pridajKnihu(new Kniha("Harry Potter 3", "J. K. Rowling", "Fantasy"));
+        inventar.pridajKnihu(new Kniha("Harry Potter 4", "J. K. Rowling", "Fantasy"));
+        inventar.pridajKnihu(new Kniha("Hobit", "J. R. R. Tolkien", "Fantasy"));
+        inventar.pridajKnihu(new Kniha("Pán prsteňov", "J. R. R. Tolkien", "Fantasy"));
+        inventar.pridajKnihu(new Kniha("Silmarillion", "J. R. R. Tolkien", "Fantasy"));
+        inventar.pridajKnihu(new Kniha("Zaklínač", "Andrzej Sapkowski", "Fantasy"));
+        inventar.pridajKnihu(new Kniha("Eragon", "Christopher Paolini", "Fantasy"));
+        inventar.pridajKnihu(new Kniha("Narnia", "C. S. Lewis", "Fantasy"));
+
+        inventar.pridajKnihu(new Kniha("Robinson Crusoe", "Daniel Defoe", "Dobrodružné"));
+        inventar.pridajKnihu(new Kniha("Ostrov pokladov", "R. L. Stevenson", "Dobrodružné"));
+        inventar.pridajKnihu(new Kniha("Cesta okolo sveta za 80 dní", "Jules Verne", "Dobrodružné"));
+        inventar.pridajKnihu(new Kniha("Dvadsaťtisíc míľ pod morom", "Jules Verne", "Dobrodružné"));
+        inventar.pridajKnihu(new Kniha("Tajomný ostrov", "Jules Verne", "Dobrodružné"));
+        inventar.pridajKnihu(new Kniha("Volanie divočiny", "Jack London", "Dobrodružné"));
+        inventar.pridajKnihu(new Kniha("Biely tesák", "Jack London", "Dobrodružné"));
+        inventar.pridajKnihu(new Kniha("Traja mušketieri", "Alexandre Dumas", "Dobrodružné"));
+
+        inventar.pridajKnihu(new Kniha("Malý princ", "Antoine de Saint-Exupéry", "Detské"));
+        inventar.pridajKnihu(new Kniha("Matilda", "Roald Dahl", "Detské"));
+        inventar.pridajKnihu(new Kniha("Charlie a továreň na čokoládu", "Roald Dahl", "Detské"));
+        inventar.pridajKnihu(new Kniha("Denník odvážneho bojka", "Jeff Kinney", "Detské"));
+        inventar.pridajKnihu(new Kniha("Momo", "Michael Ende", "Detské"));
+        inventar.pridajKnihu(new Kniha("Peter Pan", "J. M. Barrie", "Detské"));
+
+        inventar.pridajKnihu(new Kniha("Programovanie v Jave", "Autor", "Náučné"));
+        inventar.pridajKnihu(new Kniha("Databázy", "Autor", "Náučné"));
+        inventar.pridajKnihu(new Kniha("Fyzika pre SŠ", "Kolektív autorov", "Náučné"));
+        inventar.pridajKnihu(new Kniha("Matematika pre SŠ", "Kolektív autorov", "Náučné"));
+        inventar.pridajKnihu(new Kniha("Informatika", "Kolektív autorov", "Náučné"));
+        inventar.pridajKnihu(new Kniha("Algoritmy", "Autor", "Náučné"));
     }
 }
