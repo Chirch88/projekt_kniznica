@@ -126,4 +126,26 @@ classDiagram
     Inventar "" *-- "" Kniha : spravuje
 ```
 
+---
 
+## 10. Vývojový diagram – Požičanie knihy (Flowchart)
+Nasledujúci vývojový diagram znázorňuje proces požičania knihy v aplikácii.
+Diagram popisuje vyhľadanie knihy podľa názvu, kontrolu jej dostupnosti a rozhodnutie o ďalšom postupe.
+
+```mermaid
+flowchart TD
+    A[Začiatok požičania knihy] --> B[Prehľadávanie zoznamu kníh]
+    B --> C{Našla sa kniha?}
+
+    C -->|Nie| D[Vypísať: Kniha sa nenašla]
+    D --> E[Koniec]
+
+    C -->|Áno| F{Je kniha požičaná?}
+    F -->|Áno| G[Vypísať: Kniha je už požičaná]
+    G --> E
+
+    F -->|Nie| H[Požičať knihu na zadaný počet dní]
+    H --> I[Vypísať: Kniha bola požičaná]
+    I --> E
+
+```
