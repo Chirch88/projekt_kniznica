@@ -91,3 +91,39 @@ Program po spustení automaticky načíta testovacie knihy, aby bolo možné apl
 
 ---
 
+## 9. Diagram tried (Class Diagram)
+Tento diagram zobrazuje štruktúru objektov v aplikácii.
+
+```mermaid
+classDiagram
+    class Main {
+        +main(String[] args)
+    }
+    class Kniznica {
+        -Inventar inventar
+        -Scanner sc
+        +Kniznica()
+        +spusti()
+        -menuFiltrovania()
+        -nacitajData()
+    }
+    class Inventar {
+        -Kniha[] knihy
+        -int pocet
+        +pridajKnihu(Kniha k)
+        +vymazKnihu(String nazov)
+        +vypisPodlaMenaAutora(String meno)
+    }
+    class Kniha {
+        -String nazov
+        -String autor
+        -boolean pozicana
+        +vypis()
+    }
+
+    Main --> Kniznica : spúšťa
+    Kniznica "" *-- "" Inventar : vlastní
+    Inventar "" *-- "" Kniha : spravuje
+```
+
+
