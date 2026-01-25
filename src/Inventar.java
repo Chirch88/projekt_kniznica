@@ -1,3 +1,5 @@
+import java.util.Locale;
+
 public class Inventar {
 
     private Kniha[] knihy;
@@ -80,6 +82,15 @@ public class Inventar {
             if (knihy[i].getKategoria().equalsIgnoreCase(kat)) {
                 knihy[i].vypis();
             }
+        }
+    }
+
+    public void vypisPodlaMenaAutora(String meno) {
+        for (int i = 0; i < pocet; i++) {
+            if (knihy[i].getAutor().toLowerCase().contains(meno.toLowerCase())) {
+                knihy[i].vypis();
+            }
+
         }
     }
 }

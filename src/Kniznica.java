@@ -15,16 +15,15 @@ public class Kniznica {
         int volba;
 
         do {
-            System.out.println("\n--- KNIŽNICA ---");
+            System.out.println("\n--- HLAVNÉ MENU ---");
             System.out.println("1 - Pridať knihu");
             System.out.println("2 - Vyradiť knihu");
             System.out.println("3 - Požičať knihu");
             System.out.println("4 - Vrátiť knihu");
             System.out.println("5 - Vypísať všetky knihy");
-            System.out.println("6 - Vypísať požičané knihy");
-            System.out.println("7 - Vypísať knihy po lehote");
-            System.out.println("8 - Vypísať podľa kategórie");
+            System.out.println("6 - Filtrovať knihy");
             System.out.println("0 - Koniec");
+            System.out.print("Vyberte možnosť: ");
 
             volba = sc.nextInt();
             sc.nextLine();
@@ -35,11 +34,42 @@ public class Kniznica {
                 case 3 -> pozicajKnihu();
                 case 4 -> vratKnihu();
                 case 5 -> inventar.vypisVsetky();
-                case 6 -> inventar.vypisPozicane();
-                case 7 -> vypisPoLehote();
-                case 8 -> vypisPodlaKategorie();
+                case 6 -> menuFiltrovania();
+                case 0 -> System.out.println("Ukončujem program...");
+                default -> System.out.println("Neplatná voľba, skúste znova.");
             }
         } while (volba != 0);
+    }
+
+    private void menuFiltrovania() {
+        int volbaFiltra = -1;
+        while (volbaFiltra != 0) {
+            System.out.println("\n--- FILTROVANIE KNÍH ---");
+            System.out.println("1 - Vypísať požičané knihy");
+            System.out.println("2 - Vypísať knihy po lehote");
+            System.out.println("3 - Vypísať podľa kategórie");
+            System.out.println("4 - Vypísať podľa mena autora");
+            System.out.println("0 - Návrat do hlavného menu");
+            System.out.print("Vyberte typ filtra: ");
+
+            if (sc.hasNextInt()) {
+                volbaFiltra = sc.nextInt();
+                sc.nextLine();
+
+                switch (volbaFiltra) {
+                    case 1 -> inventar.vypisPozicane();
+                    case 2 -> vypisPoLehote();
+                    case 3 -> vypisPodlaKategorie();
+                    case 4 -> vypisPodlaMenaAutora();
+                    case 0 -> System.out.println("Návrat...");
+                    default -> System.out.println("Neplatná voľba filtra.");
+                }
+            }
+            else {
+                System.out.println("Chyba: Musíte zadať číslo!");
+                sc.nextLine();
+            }
+        }
     }
 
     private void pridajKnihu() {
@@ -84,6 +114,11 @@ public class Kniznica {
     private void vypisPodlaKategorie() {
         System.out.print("Zadaj kategóriu: ");
         inventar.vypisPodlaKategorie(sc.nextLine());
+    }
+
+    private void vypisPodlaMenaAutora() {
+        System.out.print("Zadajte meno autora: ");
+        inventar.vypisPodlaMenaAutora(sc.nextLine());
     }
 
     private void nacitajData() {
