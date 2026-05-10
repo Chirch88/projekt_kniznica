@@ -1,3 +1,5 @@
+package Kniznica01;
+
 import java.util.Scanner;
 
 public class Kniznica {

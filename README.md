@@ -21,19 +21,19 @@ Projekt je rozdelený do viacerých tried, pričom každá trieda má jasne defi
 
 ```
 src/
- ├── Main.java        (vstupný bod programu)
- ├── Kniznica.java   (hlavná logika aplikácie a menu)
- ├── Inventar.java   (správa kolekcie kníh)
- └── Kniha.java      (reprezentácia jednej knihy)
+ ├── Kniznica01.Main.java        (vstupný bod programu)
+ ├── Kniznica01.Kniznica.java   (hlavná logika aplikácie a menu)
+ ├── Kniznica01.Inventar.java   (správa kolekcie kníh)
+ └── Kniznica01.Kniha.java      (reprezentácia jednej knihy)
 ```
 
 ---
 
 ## 4. Spustenie programu
-Program sa spúšťa spustením triedy **Main.java**.
+Program sa spúšťa spustením triedy **Kniznica01.Main.java**.
 
 Postup v IntelliJ IDEA:
-1. Otvoriť súbor `Main.java`
+1. Otvoriť súbor `Kniznica01.Main.java`
 2. Kliknúť na tlačidlo **Run**
 3. Program sa spustí v konzole
 
@@ -62,26 +62,26 @@ Aplikácia umožňuje:
 
 ## 7. Popis tried
 
-### Trieda `Kniha`
+### Trieda `Kniznica01.Kniha`
 Trieda reprezentuje jednu knihu v knižnici.  
 Obsahuje základné informácie o knihe a jej stave (či je požičaná alebo nie).
 
 ---
 
-### Trieda `Inventar`
+### Trieda `Kniznica01.Inventar`
 Trieda zabezpečuje správu všetkých kníh v knižnici.  
 Knihy sú uložené v poli a trieda poskytuje metódy na ich vyhľadávanie, pridávanie, odstraňovanie a výpis.
 
 ---
 
-### Trieda `Kniznica`
+### Trieda `Kniznica01.Kniznica`
 Trieda obsahuje hlavnú logiku aplikácie a textové menu.  
-Spracováva vstupy od používateľa a volá príslušné metódy triedy `Inventar`.
+Spracováva vstupy od používateľa a volá príslušné metódy triedy `Kniznica01.Inventar`.
 
 ---
 
-### Trieda `Main`
-Trieda `Main` predstavuje vstupný bod programu.  
+### Trieda `Kniznica01.Main`
+Trieda `Kniznica01.Main` predstavuje vstupný bod programu.  
 Obsahuje metódu `main`, ktorá spustí aplikáciu.
 
 ---
@@ -96,34 +96,34 @@ Tento diagram zobrazuje štruktúru objektov v aplikácii.
 
 ```mermaid
 classDiagram
-    class Main {
+    class Kniznica01.Main {
         +main(String[] args)
     }
-    class Kniznica {
-        -Inventar inventar
+    class Kniznica01.Kniznica {
+        -Kniznica01.Inventar inventar
         -Scanner sc
-        +Kniznica()
+        +Kniznica01.Kniznica()
         +spusti()
         -menuFiltrovania()
         -nacitajData()
     }
-    class Inventar {
-        -Kniha[] knihy
+    class Kniznica01.Inventar {
+        -Kniznica01.Kniha[] knihy
         -int pocet
-        +pridajKnihu(Kniha k)
+        +pridajKnihu(Kniznica01.Kniha k)
         +vymazKnihu(String nazov)
         +vypisPodlaMenaAutora(String meno)
     }
-    class Kniha {
+    class Kniznica01.Kniha {
         -String nazov
         -String autor
         -boolean pozicana
         +vypis()
     }
 
-    Main --> Kniznica : spúšťa
-    Kniznica "" *-- "" Inventar : vlastní
-    Inventar "" *-- "" Kniha : spravuje
+    Kniznica01.Main --> Kniznica01.Kniznica : spúšťa
+    Kniznica01.Kniznica "" *-- "" Kniznica01.Inventar : vlastní
+    Kniznica01.Inventar "" *-- "" Kniznica01.Kniha : spravuje
 ```
 
 ---
@@ -137,15 +137,15 @@ flowchart TD
     A[Začiatok požičania knihy] --> B[Prehľadávanie zoznamu kníh]
     B --> C{Našla sa kniha?}
 
-    C -->|Nie| D[Vypísať: Kniha sa nenašla]
+    C -->|Nie| D[Vypísať: Kniznica01.Kniha sa nenašla]
     D --> E[Koniec]
 
     C -->|Áno| F{Je kniha požičaná?}
-    F -->|Áno| G[Vypísať: Kniha je už požičaná]
+    F -->|Áno| G[Vypísať: Kniznica01.Kniha je už požičaná]
     G --> E
 
     F -->|Nie| H[Požičať knihu na zadaný počet dní]
-    H --> I[Vypísať: Kniha bola požičaná]
+    H --> I[Vypísať: Kniznica01.Kniha bola požičaná]
     I --> E
 
 ```

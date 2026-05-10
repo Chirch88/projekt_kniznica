@@ -1,4 +1,4 @@
-import java.util.Locale;
+package Kniznica01;
 
 public class Inventar {
 
@@ -22,11 +22,11 @@ public class Inventar {
                     knihy[j] = knihy[j + 1];
                 }
                 pocet--;
-                System.out.println("Kniha bola vyradená.");
+                System.out.println("Kniznica01.Kniha bola vyradená.");
                 return;
             }
         }
-        System.out.println("Kniha sa nenašla.");
+        System.out.println("Kniznica01.Kniha sa nenašla.");
     }
 
     public void pozicajKnihu(String nazov, int dni) {
@@ -34,25 +34,25 @@ public class Inventar {
             if (knihy[i].getNazov().equalsIgnoreCase(nazov)) {
                 if (!knihy[i].jePozicana()) {
                     knihy[i].pozicaj(dni);
-                    System.out.println("Kniha bola požičaná.");
+                    System.out.println("Kniznica01.Kniha bola požičaná.");
                 } else {
-                    System.out.println("Kniha je už požičaná.");
+                    System.out.println("Kniznica01.Kniha je už požičaná.");
                 }
                 return;
             }
         }
-        System.out.println("Kniha sa nenašla.");
+        System.out.println("Kniznica01.Kniha sa nenašla.");
     }
 
     public void vratKnihu(String nazov) {
         for (int i = 0; i < pocet; i++) {
             if (knihy[i].getNazov().equalsIgnoreCase(nazov)) {
                 knihy[i].vrat();
-                System.out.println("Kniha bola vrátená.");
+                System.out.println("Kniznica01.Kniha bola vrátená.");
                 return;
             }
         }
-        System.out.println("Kniha sa nenašla.");
+        System.out.println("Kniznica01.Kniha sa nenašla.");
     }
 
     public void vypisVsetky() {

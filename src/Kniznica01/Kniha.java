@@ -1,3 +1,5 @@
+package Kniznica01;
+
 public class Kniha {
 
     private String nazov;
