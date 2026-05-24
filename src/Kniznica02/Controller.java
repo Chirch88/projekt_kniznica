@@ -333,6 +333,24 @@ public class Controller {
         }
     }
 
+
+    // TODO pridat
+
+
+
+    // vyradit
+
+    public void vyraditAction(){
+        var vybranaKniha = kniznicaTable.getSelectionModel().getSelectedItem();
+
+        if (vybranaKniha != null) {
+            inventar.vymazKnihu(vybranaKniha.getNazov());
+            kniznicaTable.getItems().remove(vybranaKniha);
+        }
+    }
+
+
+
     private void nacitajData() {
         inventar.pridajKnihu(new Kniha("1984", "George Orwell", "Beletria"));
         inventar.pridajKnihu(new Kniha("Zvieracia farma", "George Orwell", "Beletria"));
