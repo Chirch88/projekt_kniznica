@@ -6,11 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -238,6 +234,8 @@ public class Controller {
         okno.showAndWait();
     }
 
+
+    // tento button docasne pouzivam aj pri vytvarani novej knihy
     private Button vytvorFilterButton(String text) {
         Button button = new Button(text);
         button.getStyleClass().add("filter-button");
@@ -334,8 +332,113 @@ public class Controller {
     }
 
 
-    // TODO pridat
+    // pridavanie knih
 
+    private void pridanieKnihy(Kniha kniha) {
+        data.clear();
+
+        for (int i = 0; i < inventar.getPocet(); i++) {
+            Kniha a = inventar.getZoznamKnih()[i];
+            data.add(a);
+        }
+        data.add(kniha);
+
+        kniznicaTable.refresh();
+    }
+
+    @FXML
+    public void pridatAction() {
+        Stage pridavacieOkno = new Stage();
+        pridavacieOkno.setTitle("Nova kniha");
+        pridavacieOkno.initModality(Modality.APPLICATION_MODAL);
+        pridavacieOkno.initOwner(kniznicaTable.getScene().getWindow());
+        pridavacieOkno.setResizable(false);
+
+        Label nadpis = new Label("Pridanie knihy");
+        nadpis.getStyleClass().add("filter-title");
+
+        TextField nazovKnihy = new TextField();
+        TextField nazovAutora = new TextField();
+        TextField kategoria = new TextField();  //TODO namiesto TextFieldu asi spravim aby sa dalo len vybrat z nejakych moznosti ale nesche sa mi uz idem si dat nanuk
+
+        nazovKnihy.setPrefWidth(260);
+        nazovAutora.setPrefWidth(260);
+        kategoria.setPrefWidth(260);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(12);
+        grid.setVgap(12);
+        grid.setAlignment(Pos.CENTER);
+        grid.setMaxWidth(420);
+
+        Label nazovKnihyLabel = new Label("Nazov knihy:");
+        Label nazovAutoraLabel = new Label("Meno autora:");
+        Label kategoriaLabel = new Label("Kategória:");
+
+        nazovKnihyLabel.getStyleClass().add("filter-label");
+        nazovAutoraLabel.getStyleClass().add("filter-label");
+        kategoriaLabel.getStyleClass().add("filter-label");
+
+        grid.add(nazovKnihyLabel, 0, 0);
+        grid.add(nazovKnihy, 1, 0);
+        grid.add(nazovAutoraLabel, 0, 1);
+        grid.add(nazovAutora, 1, 1);
+        grid.add(kategoriaLabel, 0, 2);
+        grid.add(kategoria, 1, 2);
+
+        Button pridatButton = vytvorFilterButton("Pridat knihu");
+        Button zavrietButton = vytvorFilterButton("Zavriet");
+
+
+
+        pridatButton.setOnAction(e -> {
+            String nazov = nazovKnihy.getText();
+            String autor = nazovAutora.getText();
+            String kategoriaString = kategoria.getText();
+
+            if (nazov != null && !nazov.trim().isEmpty() && autor != null && !autor.trim().isEmpty() && kategoriaString != null && !kategoriaString.trim().isEmpty()) {
+
+                Kniha novaKniha = new Kniha(nazov, autor, kategoriaString);
+
+                inventar.pridajKnihu(novaKniha);
+                data.add(novaKniha);
+
+
+                pridavacieOkno.close();
+
+            } else {
+                System.out.println("Kozko nastyluj aby uzivatel videl ze nezadal vsetky polia dik<3"); //TODO
+            }
+        });
+
+        zavrietButton.setOnAction(e -> {
+            zobrazVsetky();
+            pridavacieOkno.close();
+        });
+
+        VBox root = new VBox(10);
+        root.getStyleClass().add("filter-window");
+        root.setAlignment(Pos.CENTER);
+        root.setPrefWidth(500);
+        root.setPrefHeight(520);
+        root.getChildren().addAll(
+                nadpis,
+                grid,
+                pridatButton,
+                zavrietButton
+        );
+
+        Scene scene = new Scene(root, 500, 520);
+
+        URL css = getClass().getResource("/Kniznica02/style.css");
+
+        if (css != null) {
+            scene.getStylesheets().add(css.toExternalForm());
+        }
+
+        pridavacieOkno.setScene(scene);
+        pridavacieOkno.showAndWait();
+    }
 
 
     // vyradit
