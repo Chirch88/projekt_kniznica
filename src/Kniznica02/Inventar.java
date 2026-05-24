@@ -22,6 +22,7 @@ public class Inventar {
                     knihy[j] = knihy[j + 1];
                 }
                 pocet--;
+                knihy[pocet] = null;
                 System.out.println("Kniha bola vyradená.");
                 return;
             }
@@ -63,7 +64,10 @@ public class Inventar {
 
     public Kniha[] getZoznamKnih() {
         return knihy;
+    }
 
+    public int getPocet() {
+        return pocet;
     }
 
     public void vypisPozicane() {
@@ -95,7 +99,6 @@ public class Inventar {
             if (knihy[i].getAutor().toLowerCase().contains(meno.toLowerCase())) {
                 knihy[i].vypis();
             }
-
         }
     }
 }

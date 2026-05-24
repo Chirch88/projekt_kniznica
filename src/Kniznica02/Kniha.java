@@ -36,6 +36,14 @@ public class Kniha {
         return dniPozicania;
     }
 
+    public String getStav() {
+        if (pozicana) {
+            return "Požičané";
+        } else {
+            return "Voľné";
+        }
+    }
+
     public void pozicaj(int dni) {
         pozicana = true;
         dniPozicania = dni;
