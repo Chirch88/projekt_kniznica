@@ -12,7 +12,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.net.URL;
 
 public class Controller {
@@ -35,9 +34,12 @@ public class Controller {
     private Inventar inventar;
     private ObservableList<Kniha> data;
 
+    private final String[] dostupneKategorie = {
+            "Beletria", "Román", "Detektívka", "Sci-fi", "Detské", "Fantasy", "Náučné", "Poézia", "Dobrodružné", "Iné"
+    };
+
     public Controller() {
         inventar = new Inventar();
-        nacitajData();
     }
 
     @FXML
@@ -50,6 +52,7 @@ public class Controller {
         data = FXCollections.observableArrayList();
         kniznicaTable.setItems(data);
 
+        nacitajData();
         zobrazVsetky();
     }
 
@@ -147,7 +150,10 @@ public class Controller {
         nadpis.getStyleClass().add("filter-title");
 
         TextField limitField = new TextField("0");
-        TextField kategoriaField = new TextField();
+        ComboBox<String> kategoriaField = new ComboBox<>();
+        kategoriaField.getItems().addAll(dostupneKategorie);
+        kategoriaField.setPromptText("Vyber kategóriu pre filter...");
+
         TextField autorField = new TextField();
 
         limitField.setPrefWidth(260);
@@ -193,8 +199,11 @@ public class Controller {
         });
 
         kategoriaButton.setOnAction(e -> {
-            zobrazPodlaKategorie(kategoriaField.getText());
-            okno.close();
+            String vybrataKategoria = kategoriaField.getValue();
+            if (vybrataKategoria != null) {
+                zobrazPodlaKategorie(vybrataKategoria);
+                okno.close();
+            }
         });
 
         autorButton.setOnAction(e -> {
@@ -359,7 +368,10 @@ public class Controller {
 
         TextField nazovKnihy = new TextField();
         TextField nazovAutora = new TextField();
-        TextField kategoria = new TextField();  //TODO namiesto TextFieldu asi spravim aby sa dalo len vybrat z nejakych moznosti ale nesche sa mi uz idem si dat nanuk
+
+        ComboBox<String> kategoria = new ComboBox<>();
+        kategoria.getItems().addAll(dostupneKategorie);
+        kategoria.setPromptText("Vyber kategóriu...");
 
         nazovKnihy.setPrefWidth(260);
         nazovAutora.setPrefWidth(260);
@@ -371,7 +383,7 @@ public class Controller {
         grid.setAlignment(Pos.CENTER);
         grid.setMaxWidth(420);
 
-        Label nazovKnihyLabel = new Label("Nazov knihy:");
+        Label nazovKnihyLabel = new Label("Názov knihy:");
         Label nazovAutoraLabel = new Label("Meno autora:");
         Label kategoriaLabel = new Label("Kategória:");
 
@@ -387,27 +399,45 @@ public class Controller {
         grid.add(kategoria, 1, 2);
 
         Button pridatButton = vytvorFilterButton("Pridat knihu");
+        pridatButton.getStyleClass().remove("filter-button");
+        pridatButton.getStyleClass().add("btn-primary");
+
         Button zavrietButton = vytvorFilterButton("Zavriet");
-
-
+        zavrietButton.getStyleClass().remove("filter-button");
+        zavrietButton.getStyleClass().add("btn-danger");
 
         pridatButton.setOnAction(e -> {
+            nazovKnihy.getStyleClass().remove("input-error");
+            nazovAutora.getStyleClass().remove("input-error");
+            kategoria.getStyleClass().remove("input-error");
+
             String nazov = nazovKnihy.getText();
             String autor = nazovAutora.getText();
-            String kategoriaString = kategoria.getText();
+            String kategoriaString = kategoria.getValue();
 
-            if (nazov != null && !nazov.trim().isEmpty() && autor != null && !autor.trim().isEmpty() && kategoriaString != null && !kategoriaString.trim().isEmpty()) {
+            boolean jeVsetkoOK = true;
 
+            if (nazov == null || nazov.trim().isEmpty()) {
+                nazovKnihy.getStyleClass().add("input-error");
+                jeVsetkoOK = false;
+            }
+
+            if (autor == null || autor.trim().isEmpty()) {
+                nazovAutora.getStyleClass().add("input-error");
+                jeVsetkoOK = false;
+            }
+
+            if (kategoriaString == null) {
+                kategoria.getStyleClass().add("input-error");
+                jeVsetkoOK = false;
+            }
+
+            if (jeVsetkoOK) {
                 Kniha novaKniha = new Kniha(nazov, autor, kategoriaString);
 
                 inventar.pridajKnihu(novaKniha);
                 data.add(novaKniha);
-
-
                 pridavacieOkno.close();
-
-            } else {
-                System.out.println("Kozko nastyluj aby uzivatel videl ze nezadal vsetky polia dik<3"); //TODO
             }
         });
 
@@ -416,11 +446,11 @@ public class Controller {
             pridavacieOkno.close();
         });
 
-        VBox root = new VBox(10);
+        VBox root = new VBox(15);
         root.getStyleClass().add("filter-window");
         root.setAlignment(Pos.CENTER);
         root.setPrefWidth(500);
-        root.setPrefHeight(520);
+        root.setPrefHeight(420);
         root.getChildren().addAll(
                 nadpis,
                 grid,
@@ -428,10 +458,9 @@ public class Controller {
                 zavrietButton
         );
 
-        Scene scene = new Scene(root, 500, 520);
+        Scene scene = new Scene(root, 500, 420);
 
         URL css = getClass().getResource("/Kniznica02/style.css");
-
         if (css != null) {
             scene.getStylesheets().add(css.toExternalForm());
         }
@@ -451,8 +480,6 @@ public class Controller {
             kniznicaTable.getItems().remove(vybranaKniha);
         }
     }
-
-
 
     private void nacitajData() {
         inventar.pridajKnihu(new Kniha("1984", "George Orwell", "Beletria"));
